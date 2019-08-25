@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.779
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookTask", "BookTask\BookTask.csproj", "{686307D8-4FD9-4045-9BDA-5618486C045D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookTask", "BookTask\BookTask.csproj", "{686307D8-4FD9-4045-9BDA-5618486C045D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankAccountTask", "BankAccountTask\BankAccountTask.csproj", "{82F05CE7-7E9E-492F-BB1D-95F8A922019D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{686307D8-4FD9-4045-9BDA-5618486C045D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{686307D8-4FD9-4045-9BDA-5618486C045D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{686307D8-4FD9-4045-9BDA-5618486C045D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82F05CE7-7E9E-492F-BB1D-95F8A922019D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82F05CE7-7E9E-492F-BB1D-95F8A922019D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82F05CE7-7E9E-492F-BB1D-95F8A922019D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82F05CE7-7E9E-492F-BB1D-95F8A922019D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
