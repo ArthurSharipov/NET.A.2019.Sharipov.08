@@ -17,13 +17,16 @@ namespace BankAccountTask
             Console.WriteLine(accountService.FindAccount(1337));
 
             accountService.CloseAccount(1337);
-            accountService.ShowBankAccount(accountStorage.ReadBankAccounts(@"R:\states.txt"));
+            accountService.DisplayBankAccount(accountStorage.ReadBankAccounts(@"R:\states.txt"));
 
             accountService.AddAccountBalance(1608, 58.64);
-            accountService.ShowBankAccount(accountStorage.ReadBankAccounts(@"R:\states.txt"));
+            accountService.DisplayBankAccount(accountStorage.ReadBankAccounts(@"R:\states.txt"));
 
             accountService.SubtractBalance(1213, 68.26);
-            accountService.ShowBankAccount(accountStorage.ReadBankAccounts(@"R:\states.txt"));
+            accountService.DisplayBankAccount(accountStorage.ReadBankAccounts(@"R:\states.txt"));
+
+            accountService.CloseAccount(1337);
+            accountService.DisplayBankAccount(accountStorage.ReadBankAccounts(@"R:\states.txt"));
         }
     }
 }

@@ -10,6 +10,16 @@ namespace BookTask.Books
         {
         }
 
+        /// <summary>
+        /// Assigns some values to properties.
+        /// </summary>
+        /// <param name="isbn"></param>
+        /// <param name="author"></param>
+        /// <param name="title"></param>
+        /// <param name="publishingHouse"></param>
+        /// <param name="theYearOfPublishing"></param>
+        /// <param name="numbersOfPage"></param>
+        /// <param name="price"></param>
         public Book(int isbn, string author, string title, string publishingHouse,
             int theYearOfPublishing, int numbersOfPage, int price)
         {
@@ -30,6 +40,11 @@ namespace BookTask.Books
         public int NumbersOfPage { get; set; }
         public int Price { get; set; }
 
+        /// <summary>
+        /// Override equals.
+        /// </summary>
+        /// <param name="bookObj"></param>
+        /// <returns></returns>
         public override bool Equals(object bookObj)
         {
             var book = (Book)bookObj;
@@ -49,10 +64,18 @@ namespace BookTask.Books
             return book.ISBN == ISBN;
         }
 
+        /// <summary>
+        /// Override to string.
+        /// </summary>
+        /// <returns></returns>
         public override string ToString() => $"ISBN 13: {ISBN}, AuthorName: {Author}, " +
             $"Title: {Title}, Publisher: {PublishingHouse}, Year: {TheYearOfPublishing}, " +
             $"Number of pages: {NumbersOfPage}, Price: {Price}";
 
+        /// <summary>
+        /// Override get hash code.
+        /// </summary>
+        /// <returns></returns>
         public override int GetHashCode() => ISBN.GetHashCode();
 
         public int CompareTo(object bookObj)

@@ -7,6 +7,11 @@ namespace BankAccountTask.Account
 {
     class AccountStorage
     {
+        /// <summary>
+        /// Reads data from a file to a list.
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns>List of accounts.</returns>
         public IEnumerable<BankAccount> ReadBankAccounts(string path)
         {
             var bankAccounts = new List<BankAccount>();
@@ -23,6 +28,11 @@ namespace BankAccountTask.Account
             return bankAccounts;
         }
 
+        /// <summary>
+        /// Reads account data.
+        /// </summary>
+        /// <param name="binaryReader"></param>
+        /// <returns></returns>
         private static BankAccount Reader(BinaryReader binaryReader)
         {
             var accountNumber = binaryReader.ReadInt64();
@@ -33,11 +43,23 @@ namespace BankAccountTask.Account
             var accountStatus = binaryReader.ReadString();
             var accountType = binaryReader.ReadString();
 
-            return new BankAccount(accountNumber, ownerName, ownerLastname, accountBalance, accountBonus,
-                (AccountType)Enum.Parse(typeof(AccountType), accountType));
+            return new BankAccount()
+            {
+                AccountNumber = accountNumber,
+                OwnerName = ownerName,
+                OwnerLastname = ownerLastname,
+                AccountBalance = accountBalance,
+                AccountBonus = accountBonus,
+                Status = (AccountStatus)Enum.Parse(typeof(AccountStatus), accountStatus),
+                Type = (AccountType)Enum.Parse(typeof(AccountType), accountType),
+            };
         }
 
-
+        /// <summary>
+        /// Writes account data to a file.
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="bankAccounts"></param>
         public void WriteBankAccounts(string path, IEnumerable<BankAccount> bankAccounts)
         {
             using (var binaryWriter = new BinaryWriter(File.Open(path, FileMode.Create,
@@ -48,6 +70,11 @@ namespace BankAccountTask.Account
             }
         }
 
+        /// <summary>
+        /// Writes account data to a file.
+        /// </summary>
+        /// <param name="binaryWriter"></param>
+        /// <param name="bankAccounts"></param>
         private static void Writer(BinaryWriter binaryWriter, BankAccount bankAccounts)
         {
             binaryWriter.Write(bankAccounts.AccountNumber);

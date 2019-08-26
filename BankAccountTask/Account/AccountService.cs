@@ -11,11 +11,19 @@ namespace BankAccountTask.Account
         AccountStorage accountStorage = new AccountStorage();
         string _path;
 
+        /// <summary>
+        /// Gets the path to file storage.
+        /// </summary>
+        /// <param name="path"></param>
         public AccountService(string path)
         {
             _path = path;
         }
 
+        /// <summary>
+        /// Creates an account.
+        /// </summary>
+        /// <param name="bankAccount"></param>
         public void CreateAccount(BankAccount bankAccount)
         {
             if (bankAccount == null)
@@ -25,21 +33,40 @@ namespace BankAccountTask.Account
             accountStorage.WriteBankAccounts(_path, bankAccounts);
         }
 
+        /// <summary>
+        /// Closes an account.
+        /// </summary>
+        /// <param name="accountNumber"></param>
         public void CloseAccount(long accountNumber)
         {
             if (accountNumber < 0 && accountNumber > long.MaxValue)
                 throw new ArgumentException();
 
             var bankAccounts = FindAccount(accountNumber);
+
+            if (bankAccounts.AccountBalance < 0)
+                throw new ArgumentException();
+
             bankAccounts.Status = AccountStatus.Close;
+            accountStorage.WriteBankAccounts(_path, this.bankAccounts);
         }
 
+        /// <summary>
+        /// Find an account.
+        /// </summary>
+        /// <param name="accountNumber"></param>
+        /// <returns>Account.</returns>
         public BankAccount FindAccount(long accountNumber)
         {
             bankAccounts = accountStorage.ReadBankAccounts(_path) as List<BankAccount>;
             return bankAccounts.FirstOrDefault(bankAccount => bankAccount.AccountNumber == accountNumber);
         }
 
+        /// <summary>
+        /// Credits a certain amount to the account.
+        /// </summary>
+        /// <param name="accountNumber"></param>
+        /// <param name="balance"></param>
         public void AddAccountBalance(long accountNumber, double balance)
         {
             var bankAccounts = FindAccount(accountNumber);
@@ -58,6 +85,11 @@ namespace BankAccountTask.Account
             accountStorage.WriteBankAccounts(_path, this.bankAccounts);
         }
 
+        /// <summary>
+        /// Charges a certain amount to the account.
+        /// </summary>
+        /// <param name="accountNumber"></param>
+        /// <param name="balance"></param>
         public void SubtractBalance(long accountNumber, double balance)
         {
             var bankAccounts = FindAccount(accountNumber);
@@ -68,7 +100,11 @@ namespace BankAccountTask.Account
             accountStorage.WriteBankAccounts(_path, this.bankAccounts);
         }
 
-        public void ShowBankAccount(IEnumerable<BankAccount> bankAccounts)
+        /// <summary>
+        /// Displays the amount in the account.
+        /// </summary>
+        /// <param name="bankAccounts"></param>
+        public void DisplayBankAccount(IEnumerable<BankAccount> bankAccounts)
         {
             foreach (var item in bankAccounts)
             {
